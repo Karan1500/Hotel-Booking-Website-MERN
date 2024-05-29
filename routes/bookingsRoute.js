@@ -30,4 +30,15 @@ router.post('/bookroom',async (req,res) => {
     }
 })
 
+router.post('/getbookingsbyuserid',async(req,res) => {
+    const userid = req.body.userid
+    try {
+        const bookings = await bookingModel.find({userid:userid})
+        res.send(bookings)
+    } catch (error) {
+        return res.status(400).json({error})
+    }
+})
+
+
 module.exports = router
