@@ -12,11 +12,15 @@ const paymentRoute = require('./routes/paymentRoute')
 var instance = new Razorpay({ key_id: "rzp_test_p4HuA905NOORxZ", key_secret: "7Z04VSqi0YkJnhTj8JSbyeFp" })
 
 const port = process.env.PORT || 5000;
-app.use(cors())
-app.use(express.json())
-app.use('/api/users',userRouter)
-app.use('/api/bookings',bookingsRoute)
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use('/api/users',userRouter);
+app.use('/api/bookings',bookingsRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/payment", paymentRoute);
+app.use("/api/getkey", (req, res) => {
+    res.status(200).json({key: "rzp_test_p4HuA905NOORxZ"})
+});
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
