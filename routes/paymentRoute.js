@@ -31,7 +31,7 @@ router.post('/paymentverification', async (req, res) => {
       res.status(200).json({
           success:true,
       });
-     
+      // window.location.href = "/home";
     } catch (error) {
         console.log(error);
     }
